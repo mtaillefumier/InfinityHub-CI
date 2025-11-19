@@ -7,25 +7,18 @@ CP2K is written in Fortran 2008 and can be run efficiently in parallel using a c
 
 For more information about CP2K, see www.cp2k.org.
 
-For more information on the ROCm™ open software platform and access to an active community discussion on installing, configuring, and using ROCm, please visit the ROCm web pages at www.AMD.com/ROCm and [ROCm Community Forum](https://community.amd.com/t5/rocm/ct-p/amd-rocm).
-
 The latest CP2K review, as of **May 2020**, can be found at **[The Journal of Chemical Physics 10.1063/5.0007045](https://doi.org/10.1063/5.0007045).**
 
 ## Single-Node Server Requirements
+[System Requirements](/README.md#single-node-server-requirements) 
 
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-| ---- | ---- | ----------------- | ------------ | ------------------ | 
-| X86_64 CPU(s) | AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s) <br> Radeon Instinct MI50(s) | Ubuntu 20.04 <br> Ubuntu 22.04 <BR> RHEL8 <br> RHEL9 <br> SLES 15 sp4 | ROCm v5.x compatibility |[Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) | 
-
-For ROCm installation procedures and validation checks, see:
-* [ROCm Documentation](https://docs.amd.com)
-* [AMD Lab Notes ROCm installation notes](https://github.com/amd/amd-lab-notes/tree/release/rocm-installation)
-* [ROCm Examples](https://github.com/amd/rocm-examples)
 
 ## Build Recipes
 - [Bare Metal build](/cp2k/baremetal/)
 - [Docker/Singularity Build](/cp2k/docker/)
 
+> **NOTE**
+> The recipes provided here use a script within CP2K to install the all dependencies. This toolchain script does not support MI300. 
 
 ## Running CP2K Benchmarks
 
@@ -126,8 +119,8 @@ A grep for `"CP2K     "` in the output files `/tmp/32-H2O-RPA-*.txt` will show t
 
 </details>
 <details>
-<summary>MI250 GPUs</summary>
-### MI250 GPUs
+<summary>MI250/MI300 GPUs</summary>
+### MI250/MI300 GPUs
 
 An MI250 GPU contains two Graphics Compute Dies (GCDs) each of which is presented to the application
 as a separate GPU device. When running with MI250 GPUs, the scripts that set up CPU and GPU affinities,
@@ -251,7 +244,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |CP2K|GNU GPL Version 2|[CP2k](https://www.cp2k.org/)<br />[CP2K License](https://github.com/cp2k/cp2k/blob/master/LICENSE)|
 |OpenBlas|BSD 3-Clause|[OpenBlas](https://www.openblas.net/)<br /> [OpenBlas License](https://github.com/xianyi/OpenBLAS/blob/develop/LICENSE)|
 |COSMA|BSD 3-Clause|[COSMA License](https://github.com/eth-cscs/COSMA/blob/master/LICENSE)|
@@ -266,7 +259,7 @@ The information contained herein is for informational purposes only, and is subj
 
  
 ## Notices and Attribution
-© 2022-23 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
+© 2022-2024 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
 
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein. Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
 

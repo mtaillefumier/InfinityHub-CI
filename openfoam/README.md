@@ -1,4 +1,4 @@
-# OpenFOAM
+# OpenFOAM with PETSc Solver
 
 OpenFOAM is the free, open source computational fluid dynamics (CFD) software developed primarily by OpenCFD Ltd since 2004. It has a large user base across most areas of engineering and science, from both commercial and academic organizations. OpenFOAM has an extensive range of features to solve anything from complex fluid flows involving chemical reactions, turbulence and heat transfer, to acoustics, solid mechanics and electro-magnetics.
 
@@ -7,17 +7,9 @@ OpenFOAM is professionally released every six months to include customer sponsor
 Quality assurance is based on rigorous testing. The process of code evaluation, verification and validation includes several hundred daily unit tests, a medium-sized test battery run on a weekly basis, and large industry-based test battery run prior to new version releases. Tests are designed to assess regression behavior, memory usage, code performance and scalability
 
 ## Single-Node Server Requirements
+[System Requirements](/README.md#single-node-server-requirements) 
 
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-| ---- | ---- | ----------------- | ------------ | ------------------ | 
-| X86_64 CPU(s) | AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s) <br> Radeon Instinct MI50(S) | Ubuntu 20.04 <br> Ubuntu 22.04 <BR> RHEL8 <br> RHEL9 <br> SLES 15 sp4 | ROCm v5.x compatibility |[Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) | 
-
-For ROCm installation procedures and validation checks, see:
-* [ROCm Documentation](https://rocm.docs.amd.com)
-* [AMD Lab Notes ROCm installation notes](https://github.com/amd/amd-lab-notes/tree/release/rocm-installation).
-* [ROCm Examples](https://github.com/amd/rocm-examples)
-
-### Building Recipes
+## Building Recipes
 [Docker/Singularity Build](/openfoam/docker/)
 
 ## Running OpenFOAM
@@ -26,7 +18,7 @@ This section describes how to launch two HPC Benchmarks approved by the [OpenFOA
 > All benchmarks available from the [OpenFOAM HPC Technical Committee](https://develop.openfoam.com/committees/hpc) are available in the [OpenFOAM Docker Image](/openfoam/docker/Dockerfile) in the `/benchmark/HPC_Benchmark` directory and can be run by following the instructions provided in the repository. Follow a similar procedure for your customized workloads/benchmarks to use PETSc solvers and enable GPU offloading.
 
 
-#### Run OpenFOAM Benchmarks
+### Run OpenFOAM Benchmarks
 There are a few options that can be applied to both benchmarks. 
 
 ```
@@ -99,7 +91,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |OpenFOAM|GPL v3|[OpenFOAM](https://www.openfoam.com)<br />[OpenFOAM License](https://www.openfoam.com/documentation/licencing)|
 |PETSc|BSD-2 Clause | [PETSc](https://petsc.org/)<br />[PETSc License](https://petsc.org/release/install/license/)|
 |PETScFOAM|GPL V3|[PETSc4FOAM](https://develop.openfoam.com/modules/external-solver)|
@@ -114,7 +106,7 @@ See the [OpenFOAM official page](https://www.openfoam.com/documentation/licencin
 The information contained herein is for informational purposes only, and is subject to change without notice. In addition, any stated support is planned and is also subject to change. While every precaution has been taken in the preparation of this document, it may contain technical inaccuracies, omissions and typographical errors, and AMD is under no obligation to update or otherwise correct this information. Advanced Micro Devices, Inc. makes no representations or warranties with respect to the accuracy or completeness of the contents of this document, and assumes no liability of any kind, including the implied warranties of noninfringement, merchantability or fitness for particular purposes, with respect to the operation or use of AMD hardware, software or other products described herein. No license, including implied or arising by estoppel, to any intellectual property rights is granted by this document. Terms and limitations applicable to the purchase or use of AMD’s products are as set forth in a signed agreement between the parties or in AMD's Standard Terms and Conditions of Sale.
 
 ## Notices and Attribution
-© 2022-2023 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
+© 2022-2024 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
 
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein. Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
 

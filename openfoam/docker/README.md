@@ -1,5 +1,5 @@
-## OpenFOAM Docker Build
-Instructions on how to build a Docker Container with OpenFOAM.
+# OpenFOAM with PETSc solver Docker Build
+Instructions on how to build a Docker Container with OpenFOAM using the PETSc solver.
 
 ## Build System Requirements
 - Git
@@ -9,34 +9,23 @@ Instructions on how to build a Docker Container with OpenFOAM.
 Possible `build-arg` for the Docker build command  
 
 - ### IMAGE
-    Default: `rocm/dev-ubuntu-22.04:5.7-complete`  
-    Docker Tags found: 
-    - [ROCm Ubuntu 22.04](https://hub.docker.com/r/rocm/dev-ubuntu-22.04)
-    > Note:  
-    > The `*-complete` version has all the components required for building and installation.  
+    Default: `rocm_gpu:6.4`  
+    > ***Note:***  
+    >  This container needs to be build using [Base ROCm GPU](/base-gpu-mpi-rocm-docker/).
     
-
 - ### OPENFOAM_VERSION
-    Default: `v2212`  
+    Default: `v2406`  
     Branch/Tag found: [OpenFOAM repo](https://develop.openfoam.com/Development/openfoam)
 
 - ### SCOTCH_VER
-    Default: `7.0.3`  
+    Default: `v7.0.6`  
     Branch/Tag found: [Scotch repo](https://gitlab.inria.fr/scotch/scotch.git)
 
 - ### PETSC_VER
-    Default: `3.19.0`  
+    Default: `v3.22.2`  
     Branch/Tag found: [PETSc repo](https://gitlab.com/petsc/petsc)  
     >NOTE:  
     >Initial HIP support was added in v3.18.0 with further optimizations included in minor releases. We recommend using v3.19 or newer for performance runs on AMD hardware
-
-- ### UCX_BRANCH
-    Default: `v1.14.1`  
-    Branch/Tag found: [UXC repo](https://github.com/openucx/ucx)
-
-- ### OMPI_BRANCH
-    Default: `v4.1.5`  
-    Branch/Tag found: [OpenMPI repo](https://github.com/open-mpi/ompi)
 
 ## Building OpenFOAM Container
 - Download the everything in [OpenFOAM/docker](/openfoam/docker/)  
@@ -49,7 +38,7 @@ docker build -t mycontainer/openfoam -f /path/to/Dockerfile .
 > NOTES:  
 > - `mycontainer/openfoam` is an example container name.
 > - the `.` at the end of the build line is important! It tells Docker where your build context is located!
-> - `-f /path/to/Dockerfile` is only required if your docker file is in a different directory than your build context, if you are building in the same directory it is not required. 
+> - `-f /path/to/Dockerfile` is only required if your docker file is in a different directory than your build context. If you are building in the same directory it is not required. 
 > - The `scripts` directory is required within the build context directory, and the contents will be copied into the container.
 
 To run a custom configuration, include one or more customized build-arg  
@@ -58,12 +47,9 @@ To run a custom configuration, include one or more customized build-arg
 docker build \
     -t mycontainer/openfoam \
     -f /path/to/Dockerfile \
-    --build-arg IMAGE=rocm/dev-ubuntu-22.04:5.3.3-complete \
     --build-arg OPENFOAM_VERSION=master \
     --build-arg SCOTCH_VER=master \
-    --build-arg PETSC_VER=main \
-    --build-arg UCX_BRANCH=master \
-    --build-arg OMPI_BRANCH=main \
+    --build-arg PETSC_VER=main
     . 
 ```
 ## Running OpenFOAM in a Container
@@ -89,14 +75,14 @@ docker run --device=/dev/kfd \
            <OpenFOAM Command> 
 ```
 
-### Singularity
+### Singularity  
 
 To build a Singularity image from the locally created docker file do the following:
 ```
 singularity build openfoam.sif docker-daemon://mycontainer/openfoam:latest
 ```
 
-### Singularity Interactive 
+#### Singularity Interactive 
 Launch a Singularity Image
 ```
 singularity shell --writable-tmpfs \
@@ -126,7 +112,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |OpenFOAM|GPL v3|[OpenFOAM](https://www.openfoam.com)<br />[OpenFOAM License](https://www.openfoam.com/documentation/licencing)|
 |PETSc|BSD-2 Clause | [PETSc](https://petsc.org/)<br />[PETSc License](https://petsc.org/release/install/license/)|
 |PETScFOAM|GPL V3|[PETSc4FOAM](https://develop.openfoam.com/modules/external-solver)|
@@ -141,7 +127,7 @@ See the [OpenFOAM official page](https://www.openfoam.com/documentation/licencin
 The information contained herein is for informational purposes only, and is subject to change without notice. In addition, any stated support is planned and is also subject to change. While every precaution has been taken in the preparation of this document, it may contain technical inaccuracies, omissions and typographical errors, and AMD is under no obligation to update or otherwise correct this information. Advanced Micro Devices, Inc. makes no representations or warranties with respect to the accuracy or completeness of the contents of this document, and assumes no liability of any kind, including the implied warranties of noninfringement, merchantability or fitness for particular purposes, with respect to the operation or use of AMD hardware, software or other products described herein. No license, including implied or arising by estoppel, to any intellectual property rights is granted by this document. Terms and limitations applicable to the purchase or use of AMD’s products are as set forth in a signed agreement between the parties or in AMD's Standard Terms and Conditions of Sale.
 
 ## Notices and Attribution
-© 2022-2023 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
+© 2022-2024 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
 
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein. Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
 

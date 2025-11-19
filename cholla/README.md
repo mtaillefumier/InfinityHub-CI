@@ -20,46 +20,38 @@ Cholla can be run using a variety of different numerical algorithms, allowing us
 - a second order Van Leer integrator
 
 ## Single-Node Server Requirements
-
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-| ---- | ---- | ----------------- | ------------ | ------------------ | 
-| X86_64 CPU(s) | AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s) <br> Radeon Instinct MI50(S) | Ubuntu 20.04 <br> Ubuntu 22.04 <BR> RHEL8 <br> RHEL9 <br> SLES 15 sp4 | ROCm v5.x compatibility |[Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) | 
-
-For ROCm installation procedures and validation checks, see:
-* [ROCm Documentation](https://rocm.docs.amd.com)
-* [AMD Lab Notes ROCm installation notes](https://github.com/amd/amd-lab-notes/tree/release/rocm-installation).
-* [ROCm Examples](https://github.com/amd/rocm-examples)
+[System Requirements](/README.md#single-node-server-requirements) 
 
 ## Build Recipes
 - [Bare Metal Build](/cholla/baremetal/)
 - [Docker/Singularity Build](/cholla/docker/)
 
 ## Running Cholla Benchmarks
-These examples are using the [Cholla Docker Build](/cholla/docker/), which build the binary file cholla.hydro.cholla-container based on environment variable `CHOLLA_MACHINE` set to `cholla-container` and was build/installed into `/opt/cholla`. 
+These examples are using the [Cholla Docker Build](/cholla/docker/), which build the binary file cholla.gravity.cholla-container based on environment variable `CHOLLA_MACHINE` set to `cholla-container` and was build/installed into `/opt/cholla`. 
 
 Cholla has many examples within the project, `/path/to/cholla/examples/`, find the benchmark that you wish to run in there, or provide your own workload.   
 
 You can run the examples using the command syntax below, where `#` is the number of GPUs to use and `<benchmark-to-run>` should be replaced with the full file path to the load details. 
 
 ```
-mpirun -np # cholla.hydro.cholla-container <benchmark-to-run>
+mpirun -np # cholla.gravity.cholla-container <benchmark-to-run>
 ```
-### Examples: 
+### Examples 
 * 4 GPU 3D sound wave
 ```
-mpirun -np 4 cholla.hydro.cholla-container /opt/cholla/examples/3D/sound_wave.txt
+mpirun -np 4 cholla.gravity.cholla-container /opt/cholla/examples/3D/sound_wave.txt
 ```
 * 8 GPU 3D Sound wave
 ```
-mpirun -np 8 cholla.hydro.cholla-container /opt/cholla/examples/3D/sound_wave.txt
+mpirun -np 8 cholla.gravity.cholla-container /opt/cholla/examples/3D/sound_wave.txt
 ```
 * 4 GPU 3D sod<br> 
 ```
-mpirun -np 4 cholla.hydro.cholla-container /opt/cholla/examples/3D/sod.txt
+mpirun -np 4 cholla.gravity.cholla-container /opt/cholla/examples/3D/sod.txt
 ```
 * 8 GPU 3D sod<br> 
 ```
-mpirun -np 8 cholla.hydro.cholla-container /opt/cholla/examples/3D/sod.txt
+mpirun -np 8 cholla.gravity.cholla-container /opt/cholla/examples/3D/sod.txt
 ```
 
 Each MPI rank will bind to a particular unique GPU (1 rank per device) and strong-scale the problem accordingly. Please define `HIP_VISIBLE_DEVICES` to control which particular GPUs are available to Cholla. 
@@ -75,7 +67,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |Cholla|MIT|[Cholla](https://github.com/cholla-hydro/cholla)<br >[Cholla License](https://github.com/cholla-hydro/cholla/blob/main/LICENSE.txt)|
 |HDF5|BSD-like(CUSTOM)|[HDF5 License](https://github.com/HDFGroup/hdf5/blob/develop/COPYING)|
 
@@ -86,7 +78,7 @@ Additional third-party content in this container may be subject to additional li
 The information contained herein is for informational purposes only, and is subject to change without notice. In addition, any stated support is planned and is also subject to change. While every precaution has been taken in the preparation of this document, it may contain technical inaccuracies, omissions and typographical errors, and AMD is under no obligation to update or otherwise correct this information. Advanced Micro Devices, Inc. makes no representations or warranties with respect to the accuracy or completeness of the contents of this document, and assumes no liability of any kind, including the implied warranties of noninfringement, merchantability or fitness for particular purposes, with respect to the operation or use of AMD hardware, software or other products described herein. No license, including implied or arising by estoppel, to any intellectual property rights is granted by this document. Terms and limitations applicable to the purchase or use of AMD’s products are as set forth in a signed agreement between the parties or in AMD's Standard Terms and Conditions of Sale.
 
 ## Notices and Attribution
-© 2022-2023 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
+© 2022-2024 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
 
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein. Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
 

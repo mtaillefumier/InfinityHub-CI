@@ -82,8 +82,8 @@ ENV PATH=$ROCM_PATH/bin:/opt/cmake/bin:$PATH \
     CPLUS_INCLUDE_PATH=$ROCM_PATH/include:$CPLUS_INCLUDE_PATH \
     CMAKE_PREFIX_PATH=$ROCM_PATH/lib/cmake:$CMAKE_PREFIX_PATH
 
+
 WORKDIR /tmp
-RUN gcc --version
 
 # Install UCX
 RUN git clone https://github.com/openucx/ucx.git -b ${UCX_BRANCH} \
@@ -148,6 +148,7 @@ ENV PATH=$OMPI_PATH/bin:$UCX_PATH/bin:$UCC_PATH/bin:$PATH \
 
 ARG CP2K_BRANCH="v2025.2"
 
+
 ENV LD_LIBRARY_PATH=$ROCM_PATH/lib/hipblas:$ROCM_PATH/lib/hipfft:$ROCM_PATH/lib/rocfft:$ROCM_PATH/lib/rocblas:$LD_LIBRARY_PATH \
     LIBRARY_PATH=$ROCM_PATH/lib/rocfft:$ROCM_PATH/lib/hipblas:$ROCM_PATH/lib/rocblas:$LIBRARY_PATH \
     C_INCLUDE_PATH=$ROCM_PATH/include/rocfft:$ROCM_PATH/include/hipblas:$ROCM_PATH/include/hipfft:$ROCM_PATH/include/rocblas:$C_INCLUDE_PATH \
@@ -169,6 +170,9 @@ RUN gfortran --version
 RUN /opt/ompi/bin/mpif90 --version
 COPY ./cp2k_environment ./cp2k_environment
 COPY ./spack.sh ./spack.sh
+# compile cp2k and all its dependencies. See spack.yaml file the environment directory.
+# creates a link /opt/cp2k to avoid calling spack load cp2k which will not work as intended in the container
+
 RUN ./spack.sh
 # the entire configuration is treated externally using spack environments
 
@@ -181,5 +185,5 @@ ENV PATH=$PATH:/opt/cp2k/bin:/scripts \
     UCX_TLS=self,sm,tcp,rocm
 
 WORKDIR /opt/cp2k/benchmarks
-
+# cp2k can be called with cp2k.psmp without without any spack knowledge 
 CMD ["/bin/bash"]

@@ -4,17 +4,15 @@
 PETSc, the Portable, Extensible Toolkit for Scientific Computation, pronounced PET-see (the S is silent), is a suite of data structures and routines for the scalable (parallel) solution of scientific applications modeled by partial differential equations. It supports MPI, and GPUs through CUDA, HIP or OpenCL, as well as hybrid MPI-GPU parallelism; it also supports the NEC-SX Tsubasa Vector Engine. PETSc (sometimes called PETSc/TAO) also contains the TAO, the Toolkit for Advanced Optimization, software library.
 
 ## Single-Node Server Requirements
+[System Requirements](/README.md#single-node-server-requirements) 
 
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-| ---- | ---- | ----------------- | ------------ | ------------------ | 
-| X86_64 CPU(s) | AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s) | Ubuntu 20.04 <br> Ubuntu 22.04 <BR> RHEL8 <br> RHEL9 <br> SLES 15 sp4 | ROCm v5.x compatibility |[Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) | 
 
 For ROCm installation procedures and validation checks, see:
 * [ROCm Documentation](https://rocm.docs.amd.com)
 * [AMD Lab Notes ROCm installation notes](https://github.com/amd/amd-lab-notes/tree/release/rocm-installation).
 * [ROCm Examples](https://github.com/amd/rocm-examples)
 
-### Building Recipes
+## Building Recipes
 [Docker/Singularity Build](/petsc/docker/)
 
 ## Running PETSc Benchmark
@@ -103,7 +101,7 @@ PETSc examples in general have nearly infinite combinations of parameters (e.g.,
 1. Use the same cube dimension when comparing across different hardware.
 1. Error norm should be the same for a given dimension and concurrency.
  
-### Cube Dimension Guidance
+## Cube Dimension Guidance
 Regarding the dimension to use to "saturate" hardware utilization, PETSc developers recommend using a "work-time spectrum" analysis to identify the range of optimal problem sizes for a particular solver.  In other words, with a fixed concurrency (e.g., _X_ GPUs) you incrementally increase the cube dimension (using `-n <cube_dim>`) until you see the DOF/Sec remain consistent. A dimension too small you'll likely see a small FoM because of low GPU utilization; a dimension too large you'll also see a small FoM either because of hardware limitations (e.g., cache misses) or suboptimal algorithmic convergence of the solver.
  
 For example, for a single MI210 GPU a cube dimension around 200 will typically "saturate" hardware utilization, so testing with a range of 100 to 500 should confirm a value that is optimal for a test system with 1 MI210.  Ensure that the global cube size is large enough so that multiple GPUs and/or nodes still process an optimal subset of the cube.
@@ -121,7 +119,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |PETSc|BSD-2 Clause | [PETSc License](https://petsc.org/release/install/license/)|
 |Scotch|CeCILL-C|[Scotch Web Page](https://www.labri.fr/perso/pelegrin/scotch/)<br /> [Scotch License](https://gitlab.inria.fr/scotch/scotch/-/blob/master/LICENSE_en.txt)|
 |HYPRE|Apache V2.0/MIT|[HYPRE Licenses](https://github.com/hypre-space/hypre#license)|
@@ -133,7 +131,7 @@ Additional third-party content in this container may be subject to additional li
 The information contained herein is for informational purposes only, and is subject to change without notice. In addition, any stated support is planned and is also subject to change. While every precaution has been taken in the preparation of this document, it may contain technical inaccuracies, omissions and typographical errors, and AMD is under no obligation to update or otherwise correct this information. Advanced Micro Devices, Inc. makes no representations or warranties with respect to the accuracy or completeness of the contents of this document, and assumes no liability of any kind, including the implied warranties of noninfringement, merchantability or fitness for particular purposes, with respect to the operation or use of AMD hardware, software or other products described herein. No license, including implied or arising by estoppel, to any intellectual property rights is granted by this document. Terms and limitations applicable to the purchase or use of AMD’s products are as set forth in a signed agreement between the parties or in AMD's Standard Terms and Conditions of Sale.   
 
 ## Notices and Attribution  
-© 2022-2023 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.  
+© 2022-2024 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.  
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein.  Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.    
 
 All other trademarks and copyrights are property of their respective owners and are only mentioned for informative purposes.   

@@ -4,17 +4,9 @@
 PyFR is an open-source Python based framework for solving advection-diffusion type problems on streaming architectures using the Flux Reconstruction approach of Huynh. The framework is designed to solve a range of governing systems on mixed unstructured grids containing various element types. Support for AMD hardware has been integrated into the PyFR project and can be found at [PyFR.org](https://www.pyfr.org/) and [PyFR GitHub](https://github.com/PyFR/PyFR).
 
 ## Single-Node Server Requirements
+[System Requirements](/README.md#single-node-server-requirements) 
 
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-| ---- | ---- | ----------------- | ------------ | ------------------ | 
-| X86_64 CPU(s) | AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s) <br> Radeon Instinct MI50(S) | Ubuntu 20.04 <br> Ubuntu 22.04 <BR> RHEL8 <br> RHEL9 <br> SLES 15 sp4 | ROCm v5.x compatibility |[Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) | 
-
-For ROCm installation procedures and validation checks, see:
-* [ROCm Documentation](https://rocm.docs.amd.com/)
-* [AMD Lab Notes ROCm installation notes](https://github.com/amd/amd-lab-notes/tree/release/rocm-installation).
-* [ROCm Examples](https://github.com/amd/rocm-examples)
-
-### Building Recipes
+## Building Recipes
 [Docker/Singularity Build](/pyfr/docker/)
 
 
@@ -24,21 +16,9 @@ If needed, please consult with your system administrator or view official docume
 
 
 ### PyFR Examples
-There are several PyFR examples in the [PyFR Test Cases](https://github.com/PyFR/PyFR-Test-Cases.git) repo as well as a [BSF](/pyfr/docker/examples/bsf/), [Naca0021](/pyfr/docker/examples/naca0021/), and [TVG](/pyfr/docker/examples/tgv/) that PyFR supports. We have details for the latter. 
+There are several PyFR examples in the [PyFR Test Cases](https://github.com/PyFR/PyFR-Test-Cases.git) repo as well as a [Naca0021](/pyfr/docker/examples/naca0021/) and [TVG](/pyfr/docker/examples/tgv/) that PyFR supports. We have details for the latter. 
 > Note:
 > These benchmarks/examples prefer to be run in an interactive session, if the output is captured to a file, it will result in a single line with possibly hundreds of thousands of characters. `tail -c 80 <PyFR-example.log>` should capture the last executed frame with the elapsed time. Depending on the size of the example, it may be a few characters off. 
-
-<details>
-<summary> BSF </summary>
-
-#### BSF
- The script will make PyFR boot up the benchmark, compile the GPU kernels, and execute the simulation.  
- The user can track progress through a built-in progress bar in the application.  
-```
-/examples/bsf/run_bsf 
-```
-> NOTE: It is not possible to run the BFS input set with more than one GPU currently.
-</details>
 
 <details>
 <summary> TGV </summary>  
@@ -87,7 +67,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |PyFR|BSD-3 Clause|[PyFR](https://www.pyfr.org/)<br /> [PyFR License](https://github.com/PyFR/PyFR/blob/develop/LICENSE)|
 |PyFR Test Cases|Creative Commons Attribution 4.0|[PyFR Test Cases License](https://github.com/PyFR/PyFR-Test-Cases)|
 
@@ -97,7 +77,7 @@ Additional third-party content in this container may be subject to additional li
 The information contained herein is for informational purposes only, and is subject to change without notice. In addition, any stated support is planned and is also subject to change. While every precaution has been taken in the preparation of this document, it may contain technical inaccuracies, omissions and typographical errors, and AMD is under no obligation to update or otherwise correct this information. Advanced Micro Devices, Inc. makes no representations or warranties with respect to the accuracy or completeness of the contents of this document, and assumes no liability of any kind, including the implied warranties of noninfringement, merchantability or fitness for particular purposes, with respect to the operation or use of AMD hardware, software or other products described herein. No license, including implied or arising by estoppel, to any intellectual property rights is granted by this document. Terms and limitations applicable to the purchase or use of AMD’s products are as set forth in a signed agreement between the parties or in AMD's Standard Terms and Conditions of Sale.
 
 ## Notices and Attribution
-© 2022-2023 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
+© 2022-2024 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
 
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein. Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
 

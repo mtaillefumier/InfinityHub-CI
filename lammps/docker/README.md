@@ -1,34 +1,23 @@
 # LAMMPS Container Build Instructions
-
-## overview
 This document provides instructions on how to build LAMMPS into a Docker container that is portable between environments. 
 
-### Build System Requirements
+
+## Build System Requirements
 - Git
 - Docker
 
-### Inputs
+## Inputs
 Possible `build-arg` for the Docker build command  
 
-- #### IMAGE
-    Default: `rocm/dev-ubuntu-22.04:5.7-complete`  
-    Docker Hub Tags found: 
-    - [ROCm Ubuntu 22.04](https://hub.docker.com/r/rocm/dev-ubuntu-22.04)
-    - [ROCm Ubuntu 20.04](https://hub.docker.com/r/rocm/dev-ubuntu-20.04)
-    > Note:  
-    > The `*-complete` version has all the components required for building and installation.  
+- ### IMAGE
+    Default: `rocm_gpu:7.0`  
+    > ***Note:***  
+    >  This container needs to be build using [Base ROCm GPU](/base-gpu-mpi-rocm-docker/Dockerfile).
 
-- #### LAMMPS_BRANCH
-    Default: `stable_23Jun2022_update4`  
+
+- ### LAMMPS_BRANCH
+    Default: `patch_27Jun2024`  
     Branch/Tag found: [LAMMPS repo](https://github.com/lammps/lammps)
-
-- #### UCX_BRANCH
-    Default: `v1.14.1`  
-    Branch/Tag found: [UXC repo](https://github.com/openucx/ucx)
-
-- #### OMPI_BRANCH
-    Default: `v4.1.5`  
-    Branch/Tag found: [OpenMPI repo](https://github.com/open-mpi/ompi)
 
 ## Building a Docker container for LAMMPS
 Download the [Dockerfile](/lammps/docker/Dockerfile)  
@@ -40,7 +29,7 @@ docker build -t mycontainer/lammps -f /path/to/Dockerfile .
 >Notes:
 >- `mycontainer/lammps` is an example container name.
 >- the `.` at the end of the build line is important. It tells Docker where your build context is located.
->- `-f /path/to/Dockerfile` is only required if your docker file is in a different directory than your build context, if you are building in the same directory it is not required. 
+>- `-f /path/to/Dockerfile` is only required if your docker file is in a different directory than your build context. If you are building in the same directory it is not required. 
 
 To run a custom configuration, include one or more customized build-arg  
 *DISCLAIMER:* This Docker build has only been validated using the default values. Using a different base image or branch may result in build failures or poor performance.
@@ -48,10 +37,7 @@ To run a custom configuration, include one or more customized build-arg
 docker build \
     -t mycontainer/lammps \
     -f /path/to/Dockerfile \
-    --build-arg IMAGE=rocm/dev-ubuntu-20.04:5.2.3-complete \
     --build-arg LAMMPS_BRANCH=stable_23Jun2022_update3 \
-    --build-arg UCX_BRANCH=master \
-    --build-arg OMPI_BRANCH=main \
     . 
 ```
 
@@ -60,7 +46,7 @@ Both Docker and Singularity can be run interactively or as a single command.
 To run the [LAMMPS Benchmarks](/lammps/README.md#running-lammps-benchmarks), just replace the `<LAMMPS Command>` the examples in [Running LAMMPS Benchmarks](/lammps/README.md#running-lammps-benchmarks) section of the LAMMPS readme. The commands can be run directly in an interactive session as well. 
 
 
-### Docker
+### Docker  
 
 #### Docker Interactive
 To run the container interactively, run the following command:
@@ -81,7 +67,7 @@ docker run --device=/dev/kfd \
            mycontainer/lammps  \
            <LAMMPS Command>
 ```
-### Singularity
+### Singularity  
 To build a Singularity image from your local Docker image, run the following command:
 ```bash
 singularity build lammps.sif  docker-daemon://mycontainer/lammps:latest
@@ -107,7 +93,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |LAMMPS|GPLv2.0|[LAMMPS](https://www.lammps.org/)<br /> [LAMMPS License](https://docs.lammps.org/Intro_opensource.html)|
 |NumPy|BSD 3-clause|[NumPy License](https://github.com/numpy/numpy/blob/main/LICENSE.txt)|
 |PANDAS|BSD 3-clause|[PANDAS license](https://github.com/pandas-dev/pandas/blob/main/LICENSE)|
@@ -120,7 +106,7 @@ The information contained herein is for informational purposes only, and is subj
 
 ## License and Attributions
 
-© 2022-2023 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
+© 2022-2024 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
 
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein. Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
 

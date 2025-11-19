@@ -6,82 +6,67 @@ The MILC Code is a set of research codes developed by MIMD Lattice Computation (
 
 
 ## Single-Node Server Requirements
-
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-| ---- | ---- | ----------------- | ------------ | ------------------ | 
-| X86_64 CPU(s) | AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s) <br> Radeon Instinct MI50(S)| Ubuntu 20.04 <br> Ubuntu 22.04 <BR> RHEL8 <br> RHEL9 <br> SLES 15 sp4 | ROCm v5.x compatibility |[Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) | 
-
-For ROCm installation procedures and validation checks, see:
-* [ROCm Documentation](https://rocm.docs.amd.com)
-* [AMD Lab Notes ROCm installation notes](https://github.com/amd/amd-lab-notes/tree/release/rocm-installation).
-* [ROCm Examples](https://github.com/amd/rocm-examples)
+[System Requirements](/README.md#single-node-server-requirements) 
 
 ## Build Recipes
 - [Docker/Singularity Build](/milc/docker/)
 
 
 ## Running MILC Benchmarks
-The benchmark used for MILC has been provided within the [MILC Docker Build](/milc/docker/benchmarks/) and the lattice can be downloaded at [MILC Lattice ](https://portal.nersc.gov/project/m888/apex/MILC_lattices/36x36x36x72.chklat).  
-This benchmark is created for build targets`su3_rhmd_hisq` and `su3_rhmd_hisq` details about these options can be found at [MILC/ks_imp_rhmc](https://github.com/milc-qcd/milc_qcd/blob/master/ks_imp_rhmc/).
+The latest MILC benchmark details can be found on [NERSC GitLab N10-benchmarks/lattice-gcd-workflow](https://gitlab.com/NERSC/N10-benchmarks/lattice-qcd-workflow).
 
-Once MILC has been installed with all of the components, and the benchmark files have been extracted to a working directory there are a few environment variables that are recommended to pass in or set on the system. 
-
-```
-QUDA_ENABLE_P2P=0
-QUDA_ENABLE_GDR=1
-QUDA_MILC_HISQ_RECONSTRUCT=13
-QUDA_MILC_HISQ_RECONSTRUCT_SLOPPY=9
-QUDA_RESOURCE_PATH=/tmp/tuning
-```
-
-`QUDA_RESOURCE_PATH` is where several tuning files will be generated on the first run. This can be stored anywhere with read/write permissions are available. They are used on all subsequent runs for that system. 
-The first run on each system/configuration can take up to 2-3x longer due to generating these tuning files. It is recommended to run the provided MILC benchmark once, to generate these tuning files, before processing a workload. 
-
-### Example:
-`QUDA_RESOUCE_PATH` should be provided similar to examples below. If not set as an environment variable or at run time, it will create the tuning files in the directory the command is executed from.  
-
-There are different inputs files provided for 1/2/4/8 GPUs. 
+There are 2 benchmarks within the repo, `generation` and `spectrum` and 4 size lattice that can be downloaded, based on the size of the system. 
+|Size| GPUs/GCDs|input_file| File Size |
+|---|---|---|---|
+|`tiny`|4|input_4864|1.9GB x2|
+|`small`|16|input_6496|6.8GB x2|
+|`medium`|128|input_96192|46GB x2|
+|`reference`|512|input_144288|231GB x2|
+|`target`|1152|input_192384|730GB|
 
 
-<details>
-<summary>su3_rhmc_hisq</summary?>
-- 1 GPU 
+The benchmark input files for each size can be be found here:
 ```
-QUDA_RESOURCE_PATH=/path/to/tuning GEOM="1 1 1 1" mpirun -n 1 su3_rhmc_hisq apex_medium_1.in
+.../lattice-qcd-workflow/benchmarks/$SIZE/$BENCHMARK/
 ```
-- 2 GPU
+The default location defined in the input files is:
 ```
-GEOM="1 1 1 2" mpirun -x QUDA_RESOURCE_PATH -n 2 su3_rhmc_hisq apex_medium_2.in
+.../lattice-qcd-workflow/benchmarks/$SIZE/$BENCHMARK/lattices
+``` 
+The input file can be updated, to where ever the lattices are.
+Update the line in the input file `reload_parallel .../path/to/lattice/$LATTICE_FILE` 
+To Download the lattices
 ```
--4 GPU
+.../lattice-qcd-workflow/lattices/wgetlattice.sh $SIZE
 ```
-GEOM="1 1 2 2" mpirun -x QUDA_RESOURCE_PATH -n 4 su3_rhmc_hisq apex_medium_4.in
-```
--8 GPU
-```
-GEOM="1 1 2 4" mpirun -x QUDA_RESOURCE_PATH -n 8 su3_rhmc_hisq apex_medium_8.in
-```
-</details>
+> `QUDA_RESOURCE_PATH` is where several tuning files will be generated on the first run. This can be stored anywhere with read/write permissions are available.  
+> Within provided image recipe this has been set to `/tmp`.  
+> The first run on each system/configuration can take up to 2-3x longer due to generating these tuning files. 
+> These tuning files are used on all subsequent runs for that system. 
+> It is recommended to run the provided MILC benchmark once, to generate these tuning files, before processing a workload.  
 
-<details>
-<summary>su3_rhmd_hisq</summary?>
-- 1 GPU 
+### Example
+#### Generation
 ```
-QUDA_RESOURCE_PATH=/path/to/tuning GEOM="1 1 1 1" mpirun -n 1 su3_rhmd_hisq apex_medium_1.in
+cd .../lattice-qcd-workflow/benchmarks/$SIZE/generation/ 
+
+mpirun -n #GPUs  su3_rhmd_hisq $INPUT_FILE
 ```
-- 2 GPU
+
+#### Spectrum
 ```
-GEOM="1 1 1 2" mpirun -x QUDA_RESOURCE_PATH -n 2 su3_rhmd_hisq apex_medium_2.in
+cd .../lattice-qcd-workflow/benchmarks/$SIZE/spectrum/ 
+
+mpirun -n #GPUs  ks_spectrum_hisq $INPUT_FILE
 ```
--4 GPU
-```
-GEOM="1 1 2 2" mpirun -x QUDA_RESOURCE_PATH -n 4 su3_rhmd_hisq apex_medium_4.in
-```
--8 GPU
-```
-GEOM="1 1 2 4" mpirun -x QUDA_RESOURCE_PATH -n 8 su3_rhmd_hisq apex_medium_8.in
-```
-</details>
+
+
+
+
+### Previous MILC Benchmarks
+For running the previous NERSC MILC benchmark, please see the instructions for [Running the NERSC MILC Benchmarks](https://github.com/lattice/quda/wiki/Running-the-NERSC-MILC-Benchmarks). This benchmark has not been provided in the [MILC Docker](/milc/docker/). The full instructions are provided on github.  
+To run these benchmarks within a container, use the `-v` for docker or `--bind` for singularity to mount the datasets into the container. 
+
 #### Known Issues
 Multi-GPU runs with MI100 GPUs using ROCm 5.x GPU driver, MILC benchmarks may freeze and not return with an exit code upon completion of the benchmark.
 
@@ -95,7 +80,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |MILC|MIT (Custom)|[MILC](http://physics.utah.edu/~detar/milc/)<br >[MILC License](https://github.com/milc-qcd/milc_qcd/blob/master/LICENSE)|
 |QMP|Jefferson Science Associates LLC Copyright (Custom) |[QMP](https://github.com/usqcd-software/qmp)<br >[QMP License](https://github.com/usqcd-software/qmp/blob/master/LICENSE)|
 |QIO|Jefferson Science Associates LLC Copyright (Custom) |[QIO](https://github.com/usqcd-software/qio)<br >[QIO License](https://github.com/usqcd-software/qio/blob/master/COPYING)|
@@ -108,7 +93,7 @@ Additional third-party content in this container may be subject to additional li
 The information contained herein is for informational purposes only, and is subject to change without notice. In addition, any stated support is planned and is also subject to change. While every precaution has been taken in the preparation of this document, it may contain technical inaccuracies, omissions and typographical errors, and AMD is under no obligation to update or otherwise correct this information. Advanced Micro Devices, Inc. makes no representations or warranties with respect to the accuracy or completeness of the contents of this document, and assumes no liability of any kind, including the implied warranties of noninfringement, merchantability or fitness for particular purposes, with respect to the operation or use of AMD hardware, software or other products described herein. No license, including implied or arising by estoppel, to any intellectual property rights is granted by this document. Terms and limitations applicable to the purchase or use of AMD’s products are as set forth in a signed agreement between the parties or in AMD's Standard Terms and Conditions of Sale.
 
 ## Notices and Attribution
-© 2022-2023 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
+© 2022-2024 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
 
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein. Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
 

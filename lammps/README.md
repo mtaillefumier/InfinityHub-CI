@@ -11,15 +11,7 @@ LAMMPS is distributed as an [open source code](https://docs.lammps.org/Intro_ope
 More information about LAMMPS can be found in the [LAMMPS Website](https://www.lammps.org/#gsc.tab=0) and in the [LAMMPS Manual](https://docs.lammps.org/Manual.html).
 
 ## Single-Node Server Requirements
-
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-| ---- | ---- | ----------------- | ------------ | ------------------ | 
-| X86_64 CPU(s) | AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s) <br> AMD Instinct MI50 GPU(s) | Ubuntu 20.04 <br> Ubuntu 22.04 <BR> RHEL8 <br> RHEL9 <br> SLES 15 sp4 | ROCm v5.x compatibility |[Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) |
-
-For ROCm installation procedures and validation checks, see:
-* [ROCm Documentation](https://rocm.docs.amd.com)
-* [AMD Lab Notes ROCm installation notes](https://github.com/amd/amd-lab-notes/tree/release/rocm-installation).
-* [ROCm Examples](https://github.com/amd/rocm-examples)
+[System Requirements](/README.md#single-node-server-requirements) 
 
 ## Build Recipes
 - [Bare Metal build](/lammps/baremetal/)
@@ -60,7 +52,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |LAMMPS|GPLv2.0|[LAMMPS](https://www.lammps.org/)<br /> [LAMMPS License](https://docs.lammps.org/Intro_opensource.html)|
 |NumPy|BSD 3-clause|[NumPy License](https://github.com/numpy/numpy/blob/main/LICENSE.txt)|
 |PANDAS|BSD 3-clause|[PANDAS license](https://github.com/pandas-dev/pandas/blob/main/LICENSE)|
@@ -73,7 +65,7 @@ The information contained herein is for informational purposes only, and is subj
  
 ## License and Attributions
 
-© 2022-2023 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
+© 2022-2024 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
 
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein. Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
 

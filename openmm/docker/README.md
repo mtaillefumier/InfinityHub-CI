@@ -2,40 +2,29 @@
 ## OpenMM Docker Build
 Instructions on how to build a Docker Container with OpenMM.
 
-### Build System Requirements
+
+## Build System Requirements
 - Git
 - Docker
 
-### Inputs
+## Inputs
 Possible `build-arg` for the Docker build command  
 
-- #### IMAGE
-    Default: `rocm/dev-ubuntu-22.04:5.7-complete`  
-    Docker Tags found: 
-    - [ROCm Ubuntu 22.04](https://hub.docker.com/r/rocm/dev-ubuntu-22.04)
-    - [ROCm Ubuntu 20.04](https://hub.docker.com/r/rocm/dev-ubuntu-20.04)
-    > Note:  
-    > The `*-complete` version has all the components required for building and installation.  
+- ### IMAGE
+    Default: `rocm_gpu:5.7`  
+    > ***Note:***  
+    >  This container needs to be build using [Base ROCm GPU](/base-gpu-mpi-rocm-docker/Dockerfile).
 
-- #### OPENMM_BRANCH
+- ### OPENMM_BRANCH
     Default: `8.0.0`  
     Branch/Tag found: [OpenMM repo](https://github.com/openmm/openmm.git)  
 
-- #### OPENMMHIP_BRANCH
+- ### OPENMMHIP_BRANCH
     Default: `Master`  
     Branch/Tag found: [OpenMM repo](https://github.com/openmm/openmm.git)  
 
-
-- #### UCX_BRANCH
-    Default: `v1.14.1`  
-    Branch/Tag found: [UXC repo](https://github.com/openucx/ucx)  
-
-- #### OMPI_BRANCH
-    Default: `v4.1.5`  
-    Branch/Tag found: [OpenMPI repo](https://github.com/open-mpi/ompi)  
-
-### Building OpenMM Container:
-Download the [Dockerfile](/openmm-docker/Dockerfile)  
+## Building OpenMM Container:
+Download the [Dockerfile](/openmm/docker/Dockerfile)  
 
 To run the default configuration:
 ```
@@ -44,7 +33,7 @@ docker build -t mycontainer/OpenMM -f /path/to/Dockerfile .
 >Notes:  
 >- `mycontainer/OpenMM` is an example container name.
 >- the `.` at the end of the build line is important! It tells Docker where your build context is located!
->- `-f /path/to/Dockerfile` is only required if your docker file is in a different directory than your build context, if you are building in the same directory it is not required. 
+>- `-f /path/to/Dockerfile` is only required if your docker file is in a different directory than your build context. If you are building in the same directory it is not required. 
 
 
 To run a custom configuration, include one or more customized build-arg  
@@ -53,10 +42,7 @@ To run a custom configuration, include one or more customized build-arg
 docker build \
     -t mycontainer/openmm \
     -f /path/to/Dockerfile \
-    --build-arg IMAGE=rocm/dev-ubuntu-20.04:5.5.0-complete \
-    --build-arg OPENMM_BRANCH=main \
-    --build-arg UCX_BRANCH=master \
-    --build-arg OMPI_BRANCH=main \
+    --build-arg OPENMM_BRANCH=main
     . 
 ```
 ## Running OpenMM Container
@@ -67,7 +53,7 @@ If needed, please consult with your system administrator or view official docume
 To run the [OpenMM Benchmarks](/openmm/README.md#running-openmm-benchmarks), just replace the `<OpenMM Command>` the examples in [Running OpenMM Benchmarks](/openmm/README.md#running-openmm-benchmarks) section of the OpenMM readme. The commands can be run directly in an interactive session as well. 
 
 
-### Docker
+### Docker  
 
 #### Docker Interactive
 To run the container interactively, run the following command:
@@ -88,7 +74,7 @@ docker run --device=/dev/kfd \
 ```
 
 
-### Singularity
+### Singularity  
 To build a singularity container from a docker container run the following command:
 ```
 singularity build openmm.sif docker-daemon://mycontainer/openmm
@@ -116,4 +102,4 @@ singularity run \
 ```
 
 ## Custom Simulation
-To run a custom simulation, included any scripts and data files in the container at build time adding [Docker Copy](https://docs.docker.com/engine/reference/builder/#copy) commands in the provided [Dockerfile](/openmm-docker/Dockerfile) or mounting the files into the container at runtime with [Docker Volumes](https://docs.docker.com/storage/volumes/) or [Singularity Mount](https://docs.sylabs.io/guides/3.0/user-guide/bind_paths_and_mounts.html). 
+To run a custom simulation, included any scripts and data files in the container at build time adding [Docker Copy](https://docs.docker.com/engine/reference/builder/#copy) commands in the provided [Dockerfile](/openmm/docker/Dockerfile) or mounting the files into the container at runtime with [Docker Volumes](https://docs.docker.com/storage/volumes/) or [Singularity Mount](https://docs.sylabs.io/guides/3.0/user-guide/bind_paths_and_mounts.html). 

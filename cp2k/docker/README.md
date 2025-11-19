@@ -1,43 +1,25 @@
 # CP2K Container Build Instructions
+This document provides instructions on how to build CP2K into a Docker container that is portable between environments.  
+  
 
-## Overview
-This document provides instructions on how to build CP2K into a Docker container that is portable between environments.
-
-### Build System Requirements
+## Build System Requirements
 - Git
 - Docker
 
-### Inputs
+## Inputs
 Possible `build-arg` for the Docker build command  
 
-- #### IMAGE
-    Default: `rocm/dev-ubuntu-22.04:5.7-complete`  
-    Docker Hub Tags found: 
-    - [ROCm Ubuntu 22.04](https://hub.docker.com/r/rocm/dev-ubuntu-22.04)
-    - [ROCm Ubuntu 20.04](https://hub.docker.com/r/rocm/dev-ubuntu-20.04)
-    > Note:  
-    > The `*-complete` version has all the components required for building and installation.  
+- ### IMAGE
+    Default: `rocm_gpu:6.4`  
+    > ***Note:***  
+    >  This container needs to be build using [Base ROCm GPU](/base-gpu-mpi-rocm-docker/Dockerfile).
 
-- #### CP2K_BRANCH
-    Default: `v2023.1`  
-    Branch/Tag found: [CP2K repo](https://github.com/cp2k/cp2k)
+> **NOTE**
+> This recipe uses a script within the CP2K repo to install the all dependencies. The toolchain script does not directly support Mi300,
+> The recipe has been updated to use the variable `AMDGPU_TARGETS`, set in the [Base ROCm GPU](/base-gpu-mpi-rocm-docker/Dockerfile), to determine what GPU architecture(s) to build for. The [Mi250](/cp2k/docker/Dockerfile#27) in the Dockerfile correctly configures the toolchain for all AMD GPUs, and the recipe updates the necessary details for the GPU(s) to build for. 
 
-- #### UCX_BRANCH
-    Default: `v1.14.1`  
-    Branch/Tag found: [UXC repo](https://github.com/openucx/ucx)
-
-- #### OMPI_BRANCH
-    Default: `v4.1.5`  
-    Branch/Tag found: [OpenMPI repo](https://github.com/open-mpi/ompi)
-
-- #### GPU_VER
-    Default: `Mi250`   
-    Options: `Mi50`, `Mi100`, `Mi250`  
-    Specifies the GPU architecture for which DBCSR will be built. Mi250 is used for all MI200 series accelerators.
-
-
-### Build Instructions
-Download the [CP2K Dockerfile](/cp2k-docker/Dockerfile).
+## Build Instructions
+Download the [CP2K Dockerfile](/cp2k/docker/Dockerfile).
 
 To build the default configuration:
 ```bash
@@ -54,10 +36,7 @@ To run a custom configuration, include one or more customized `--build-arg` para
 docker build \
     -t mycontainer/cp2k \
     -f /path/to/Dockerfile \
-    --build-arg IMAGE=rocm/dev-ubuntu-20.04:5.2.3-complete \
     --build-arg CP2K_BRANCH=master \
-    --build-arg UCX_BRANCH=v1.8.0 \
-    --build-arg OMPI_BRANCH=v4.0.3 \
     --build-arg GPU_VER=Mi100 \
     . 
 ```
@@ -76,7 +55,7 @@ To run the [CP2K Benchmarks](/cp2k/README.md#running-cp2k-benchmarks), just repl
 > To run this benchmarks you will need to update the command from [Running CP2K Benchmarks](/cp2k/README.md#running-cp2k-benchmarks) to use the binary specified. 
 
 
-### Docker 
+### Docker  
 If you want access any output files generated during the run, please add `-v $(pwd):/tmp` before `mycontainer/cp2k` in the following commands. 
 For interactive, be sure to copy any files to `/tmp` before exiting the container. For Single Command runs, you can set the output to `/tmp` or set your working directory using `--workdir /tmp`.
 #### Docker Interactive
@@ -86,10 +65,10 @@ docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=u
 
 #### Docker Single Command
 ```bash
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined -e PMIX_MCA_gds=^ds21 mycontainer/cp2k bash -c "<cp2k Command>"
+docker run --rm --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined -e PMIX_MCA_gds=^ds21 mycontainer/cp2k bash -c "<cp2k Command>"
 ```
 
-### Singularity 
+### Singularity  
 To build a Singularity image from the locally created docker file do the following:
 ```bash
 singularity build cp2k.sif docker-daemon://mycontainer/cp2k:latest
@@ -117,7 +96,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |CP2K|GNU GPL Version 2|[CP2k](https://www.cp2k.org/)<br />[CP2K License](https://github.com/cp2k/cp2k/blob/master/LICENSE)|
 |OpenBlas|BSD 3-Clause|[OpenBlas](https://www.openblas.net/)<br /> [OpenBlas License](https://github.com/xianyi/OpenBLAS/blob/develop/LICENSE)|
 |COSMA|BSD 3-Clause|[COSMA License](https://github.com/eth-cscs/COSMA/blob/master/LICENSE)|
@@ -132,7 +111,7 @@ The information contained herein is for informational purposes only, and is subj
 
  
 ## Notices and Attribution
-© 2022-23 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
+© 2022-24 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.
 
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein. Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.
 

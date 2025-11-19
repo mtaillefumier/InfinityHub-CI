@@ -1,6 +1,7 @@
 # PETSc Docker Build Instructions
 Instructions on how to build a Docker Container with PETSc.
 
+
 ## System Requirements
 - Git
 - Docker
@@ -9,25 +10,16 @@ Instructions on how to build a Docker Container with PETSc.
 Possible `build-arg` for the Docker build command    
 
 - ### IMAGE
-    Default: `rocm/dev-ubuntu-22.04:5.7-complete`  
-    Docker Tags found: 
-    - [ROCm Ubuntu 22.04](https://hub.docker.com/r/rocm/dev-ubuntu-22.04)
-    > Note:  
-    > The `*-complete` version has all the components required for building and installation.  
+    Default: `rocm_gpu:6.4`  
+    > ***Note:***  
+    >  This container needs to be build using [Base ROCm GPU](/base-gpu-mpi-rocm-docker/Dockerfile).
+
 
 - ### PETSc_BRANCH
-    Default: default: `v3.19.0`  
+    Default: default: `v3.22.2`  
     Branch/Tag found: [ PETSc repo](https://github.com/petsc/petsc.git).
     >NOTE:  
     >Initial HIP support was added in v3.18.0 with further optimizations included in minor releases. We recommend using v3.19 or newer for performance runs on AMD hardware
-
-- ### UCX_BRANCH
-    Default: `v1.14.1`  
-    Branch/Tag found: [UXC repo](https://github.com/openucx/ucx)
-
-- ### OMPI_BRANCH
-    Default: `v4.1.5`  
-    Branch/Tag found: [OpenMPI repo](https://github.com/open-mpi/ompi)
 
 ## Building PETSc Container:
 Download the all files at [PETSc Docker](/petsc/docker/)  
@@ -39,7 +31,7 @@ docker build -t mycontainer/PETSc -f /path/to/Dockerfile .
 >Notes:  
 >- `mycontainer/PETSc` will be the name of your local container.
 >- the `.` at the end of the build line is important! It tells Docker where your build context is located!
->- `-f /path/to/Dockerfile` is only required if your docker file is in a different directory than your build context, if you are building in the same directory it is not required. 
+>- `-f /path/to/Dockerfile` is only required if your docker file is in a different directory than your build context. If you are building in the same directory it is not required. 
 >- The `benchmark` directory is required within the build context directory, and the contents will be copied into the container. We have provided three benchmarks, and instructions on how to run them ([see below](#running-PETSc-container)). If you plan on running PETSc against your own data set, it can be copied into the container by placing it in the benchmark directory before building or mounted into the container using dockers mount/volume API. 
 
 
@@ -50,11 +42,7 @@ To run a custom configuration, include one or more customized build-arg
 docker build \
     -t mycontainer/PETSc \
     -f /path/to/Dockerfile \
-    --build-arg IMAGE=rocm/dev-ubuntu-20.04:5.2.3-complete \
     --build-arg PETSc_BRANCH=v3.18.2 \
-    --build-arg MPI_ENABLED=on \
-    --build-arg UCX_BRANCH=master \
-    --build-arg OMPI_BRANCH=main \
     . 
 ```
 
@@ -65,7 +53,7 @@ If needed, please consult with your system administrator or view official docume
 
 To run the [PETSc Benchmarks](/petsc/README.md#running-petsc-benchmark), just replace the `<PETSc Command>` the examples in [Running PETSc Benchmarks](/petsc/README.md#running-petsc-benchmark) section of the PETSc readme. The commands can be run directly in an interactive session as well. 
 
-### Docker
+### Docker  
 
 #### Docker Interactive
 To run the container and build the benchmark interactively 
@@ -90,7 +78,7 @@ docker run --rm -it \
     <PETSc Command> 
 ```
 
-### Singularity
+### Singularity  
 This section assumes that an up-to-date version of Singularity is installed on your system and properly configured for your system. Please consult with your system administrator or view official Singularity documentation.
 To build a Singularity container from your local Docker container, run the following command:
 ```
@@ -132,7 +120,7 @@ The application is provided in a container image format that includes the follow
 |CMAKE|OSI-approved BSD-3 clause|[CMake License](https://cmake.org/licensing/)|
 |OpenMPI|BSD 3-Clause|[OpenMPI License](https://www-lb.open-mpi.org/community/license.php)<br /> [OpenMPI Dependencies Licenses](https://docs.open-mpi.org/en/v5.0.x/license/index.html)|
 |OpenUCX|BSD 3-Clause|[OpenUCX License](https://openucx.org/license/)|
-|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/release/licensing.html)|
+|ROCm|Custom/MIT/Apache V2.0/UIUC OSL|[ROCm Licensing Terms](https://rocm.docs.amd.com/en/latest/about/license.html)|
 |PETSc|BSD-2 Clause | [PETSc License](https://petsc.org/release/install/license/)|
 |Scotch|CeCILL-C|[Scotch Web Page](https://www.labri.fr/perso/pelegrin/scotch/)<br /> [Scotch License](https://gitlab.inria.fr/scotch/scotch/-/blob/master/LICENSE_en.txt)|
 |HYPRE|Apache V2.0/MIT|[HYPRE Licenses](https://github.com/hypre-space/hypre#license)|
@@ -144,7 +132,7 @@ Additional third-party content in this container may be subject to additional li
 The information contained herein is for informational purposes only, and is subject to change without notice. In addition, any stated support is planned and is also subject to change. While every precaution has been taken in the preparation of this document, it may contain technical inaccuracies, omissions and typographical errors, and AMD is under no obligation to update or otherwise correct this information. Advanced Micro Devices, Inc. makes no representations or warranties with respect to the accuracy or completeness of the contents of this document, and assumes no liability of any kind, including the implied warranties of noninfringement, merchantability or fitness for particular purposes, with respect to the operation or use of AMD hardware, software or other products described herein. No license, including implied or arising by estoppel, to any intellectual property rights is granted by this document. Terms and limitations applicable to the purchase or use of AMD’s products are as set forth in a signed agreement between the parties or in AMD's Standard Terms and Conditions of Sale.   
 
 ## Notices and Attribution  
-© 2022-2023 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.  
+© 2022-2024 Advanced Micro Devices, Inc. All rights reserved. AMD, the AMD Arrow logo, Instinct, Radeon Instinct, ROCm, and combinations thereof are trademarks of Advanced Micro Devices, Inc.  
 Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries. Docker, Inc. and other parties may also have trademark rights in other terms used herein.  Linux® is the registered trademark of Linus Torvalds in the U.S. and other countries.    
 
 All other trademarks and copyrights are property of their respective owners and are only mentioned for informative purposes.   
