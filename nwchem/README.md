@@ -28,6 +28,7 @@ docker run --rm -it \
     --device /dev/dri \
     --device /dev/kfd \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w /tmp \
     amdih/nwchem:7.0.2.amd1 /bin/bash
 ```
@@ -38,6 +39,7 @@ docker run --rm -it \
     --device /dev/dri \ 
     --device /dev/kfd \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w /tmp \
     amdih/nwchem:7.0.2.amd1 <NWChem Command>
 ```

@@ -37,6 +37,7 @@ docker run \
     --device=/dev/kfd \
     --device=/dev/dri \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -v /path/to/relion_benchmark:/benchmark \
     -it amdih/relion:4.0 /bin/bash
 ```
@@ -47,6 +48,7 @@ docker run \
     --device=/dev/kfd \
     --device=/dev/dri \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -v /path/to/relion_benchmark:/benchmark \
     -it amdih/relion:4.0 <RELION Command>
 ```

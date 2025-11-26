@@ -96,6 +96,7 @@ docker run -it \
     --device=/dev/dri \
     --security-opt \
     seccomp=unconfined \
+    --ipc=host \
     -v /PATH/TO/FLUENT_TEST_FILES/:/benchmark \
     fluent:latest bash
 ```

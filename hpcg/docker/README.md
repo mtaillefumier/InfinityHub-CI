@@ -54,6 +54,7 @@ To run the [rocHPCG Benchmarks](/hpcg/README.md#running-rochpcg-benchmark), just
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it  mycontainer/rochpcg  bin/bash
 ```
 
@@ -63,6 +64,7 @@ docker run --device=/dev/kfd \
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            mycontainer/rochpcg  \
            <rocHPCG Command>
 ```

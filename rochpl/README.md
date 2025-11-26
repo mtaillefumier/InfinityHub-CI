@@ -172,7 +172,7 @@ Please note that for successful testing, a device with at least 16GB of device m
 
 To run the benchmark interactively, use:
 
-`sudo docker run --rm -it --device /dev/kfd --device /dev/dri --security-opt seccomp=unconfined rochpl.6.0 /bin/bash`
+`sudo docker run --rm -it --device /dev/kfd --device /dev/dri --security-opt seccomp=unconfined --ipc=host rochpl.6.0 /bin/bash`
 
 Once you are in the interactive session, the benchmark may be run using the command  `mpirun_rochpl`  with your specific options. For example:
 
@@ -182,7 +182,7 @@ Once you are in the interactive session, the benchmark may be run using the comm
 
 To run the benchmark non-interactively, use the  `mpirun_rochpl`  command as part of the command line. For example:
 
-`sudo docker run --rm --device /dev/kfd --device /dev/dri --security-opt seccomp=unconfined rochpl.6.0  mpirun_rochpl -P 1 -Q 1 -N 45312`
+`sudo docker run --rm --device /dev/kfd --device /dev/dri --security-opt seccomp=unconfined --ipc=host rochpl.6.0  mpirun_rochpl -P 1 -Q 1 -N 45312`
 
 ### Using Singularity
 

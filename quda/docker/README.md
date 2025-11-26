@@ -64,11 +64,11 @@ To run a single command docker, it will be necessary to mount the tuning files i
 
 #### Docker Interactive
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined mycontainer/quda /bin/bash
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host mycontainer/quda /bin/bash
 ```
 #### Docker Single Command
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined mycontainer/quda <QUDA Command>
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host mycontainer/quda <QUDA Command>
 ```
 
 ### Singularity  

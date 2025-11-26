@@ -63,11 +63,11 @@ To run the [RAJA Benchmarks](/raja/README.md#running-raja-benchmarks), just repl
 ### Docker  
 #### Docker Interactive
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined mycontainer/raja /bin/bash
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host mycontainer/raja /bin/bash
 ```
 #### Docker Single Command
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined mycontainer/raja <RAJA Command>
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host mycontainer/raja <RAJA Command>
 ```
 
 ### Singularity  

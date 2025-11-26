@@ -26,6 +26,7 @@ docker run --rm -it \
     --device=/dev/kfd \
     --device=/dev/dri \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     amdih/minihacc:1.0.amd3_129 /bin/bash
 ```
 
@@ -35,6 +36,7 @@ docker run --rm -it \
     --device=/dev/kfd \
     --device=/dev/dri \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     amdih/minihacc:1.0.amd3_129 <Mini-HACC Command>
 ```
 

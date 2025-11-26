@@ -57,11 +57,11 @@ If you want access to the HDF5 files generated during the run, please add `-v $(
 
 #### Docker Interactive
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined mycontainer/cholla /bin/bash
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host mycontainer/cholla /bin/bash
 ```
 #### Docker Single Command
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined mycontainer/cholla <Cholla Command>
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host mycontainer/cholla <Cholla Command>
 ```
 
 ### Singularity  

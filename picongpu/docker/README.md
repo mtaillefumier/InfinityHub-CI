@@ -69,6 +69,7 @@ docker run --rm -it \
     --device /dev/dri \
     --device /dev/kfd \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w /opt/picon-examples/khi_fom \
     mycontainer/picongpu  /bin/bash
 ```
@@ -80,6 +81,7 @@ docker run --rm -it \
     --device /dev/dri \
     --device /dev/kfd \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w  /opt/picon-examples/khi_fom \
     mycontainer/picongpu  \
     <PIconGPU Command> 

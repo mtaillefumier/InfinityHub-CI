@@ -62,6 +62,7 @@ docker run --rm -it \
     --device /dev/dri \
     --device /dev/kfd \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w /opt/petsc \
     mycontainer/PETSc  /bin/bash
 ```
@@ -73,6 +74,7 @@ docker run --rm -it \
     --device /dev/dri \
     --device /dev/kfd \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w  /opt/petsc \
     mycontainer/PETSc  \
     <PETSc Command> 

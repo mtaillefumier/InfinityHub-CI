@@ -69,6 +69,7 @@ docker run --rm -it \
     --device=/dev/kfd \
     --device=/dev/dri \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w /benchmark/ \
     mycontainer/milc /bin/bash
 ```
@@ -78,6 +79,7 @@ docker run --rm -it \
     --device=/dev/kfd \
     --device=/dev/dri \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w /benchmark/benchmarks/tiny/generation/ \
     -v $(pwd):/benchmark/benchmarks/tiny/generation/lattices  
     mycontainer/milc <MILC Command>

@@ -55,11 +55,11 @@ To run the [GROMACS Benchmarks](/gromacs/README.md#running-gromacs-benchmarks), 
 
 #### Docker Interactive
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined mycontainer/gromacs-hip /bin/bash
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host mycontainer/gromacs-hip /bin/bash
 ```
 ### Docker Non-Interactive
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined mycontainer/gromacs-hip <GROMACS Command>
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host mycontainer/gromacs-hip <GROMACS Command>
 ```
 
 ### Singularity  

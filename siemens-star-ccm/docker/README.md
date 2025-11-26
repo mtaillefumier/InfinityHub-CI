@@ -98,6 +98,7 @@ docker run -it \
     --device=/dev/dri \
     --security-opt \
     seccomp=unconfined \
+    --ipc=host \
     -v /PATH/TO/TEST_FILES/:/benchmark \
     starccm:latest bash
 ```

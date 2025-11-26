@@ -63,6 +63,7 @@ docker run --rm -it \
     --device=/dev/kfd \
     --device=/dev/dri \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -v /path/to/my/project:/mnt \
     mycontainer/kokkos \
     /bin/bash

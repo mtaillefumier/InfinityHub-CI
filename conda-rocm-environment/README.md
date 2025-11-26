@@ -63,6 +63,7 @@ To run the container interactively, run the following command:
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it conda_rocm_gpu:7.0 bash
 ```
 > ** Notes **

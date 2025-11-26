@@ -62,6 +62,7 @@ To run the container interactively, run the following command:
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it  mycontainer/openmm  bash
 ```
 #### Docker Single Command
@@ -70,6 +71,7 @@ To run the container as part of a batch script in a single command
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it  mycontainer/openmm \
            <OpenMM Command>
 ```

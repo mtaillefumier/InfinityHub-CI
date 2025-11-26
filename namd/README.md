@@ -29,7 +29,7 @@ In order to assess performance of the container image, NAMD standard benchmark s
 
 Begin by launching a container interactively:
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined  amdih/namd:2.15a2-20211101 /bin/bash
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host amdih/namd:2.15a2-20211101 /bin/bash
 ```
 
 Then in the container navigate into the `/examples` directory and run the benchmarks:

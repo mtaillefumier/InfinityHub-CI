@@ -54,6 +54,7 @@ To run the container interactively, run the following command:
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it  mycontainer/lammps  bash
 ```
 and launch any LAMMPS command from the prompt. 
@@ -64,6 +65,7 @@ and launch any LAMMPS command from the prompt.
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            mycontainer/lammps  \
            <LAMMPS Command>
 ```

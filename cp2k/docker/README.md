@@ -60,12 +60,12 @@ If you want access any output files generated during the run, please add `-v $(p
 For interactive, be sure to copy any files to `/tmp` before exiting the container. For Single Command runs, you can set the output to `/tmp` or set your working directory using `--workdir /tmp`.
 #### Docker Interactive
 ```bash
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined -e PMIX_MCA_gds=^ds21 mycontainer/cp2k /bin/bash
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host -e PMIX_MCA_gds=^ds21 mycontainer/cp2k /bin/bash
 ```
 
 #### Docker Single Command
 ```bash
-docker run --rm --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined -e PMIX_MCA_gds=^ds21 mycontainer/cp2k bash -c "<cp2k Command>"
+docker run --rm --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host -e PMIX_MCA_gds=^ds21 mycontainer/cp2k bash -c "<cp2k Command>"
 ```
 
 ### Singularity  
