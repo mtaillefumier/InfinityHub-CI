@@ -6,6 +6,7 @@ This document provides instructions on how to build Cholla into a Docker contain
 - Git
 - Docker
 
+
 ## Inputs
 Possible `build-arg` for the Docker build command  
 

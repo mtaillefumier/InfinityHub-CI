@@ -4,7 +4,7 @@ This document provides instructions on how to build LAMMPS into a Docker contain
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs
 Possible `build-arg` for the Docker build command  

@@ -4,7 +4,7 @@ If you are not familiar with creating Docker builds, please see the available [D
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs
 Possible `build-arg` for the Docker build command  

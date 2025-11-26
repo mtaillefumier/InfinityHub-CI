@@ -6,9 +6,8 @@ RELION (REgularized LIkelihood OptimizatioN) implements an empirical Bayesian ap
 RELION is comprised of multiple steps that cover the entire single-particle analysis workflow. Steps include beam-induced motion-correction, CTF estimation, automated particle picking, particle extraction, 2D class averaging, 3D classification, and high-resolution refinement in 3D. RELION can process movies generated from direct-electron detectors,  apply final map sharpening, and perform local-resolution estimation. More information can be obtained from the [official documentation](https://relion.readthedocs.io/en/release-4.0/).
 
 ## Single-Node Server Requirements
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-|---- |---- |----------------- |------------ |------------------ | 
-| X86_64 CPU(s) |[AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s) <br>  AMD Instinct MI50 GPU(s)](https://rocm.docs.amd.com/en/docs-5.3.0/release/gpu_os_support.html#supported-distributions) | [Ubuntu <br> RHEL <br>  SLES  ](https://rocm.docs.amd.com/en/docs-5.3.0/release/gpu_os_support.html#supported-distributions) | [ROCm 5.3.0](https://rocm.docs.amd.com/en/docs-5.3.0/) | [Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) |
+[System Requirements](/README.md#single-node-server-requirements) 
+
 
 For ROCm installation procedures and validation checks, see:
 * [ROCm Documentation](https://rocm.docs.amd.com)

@@ -6,9 +6,7 @@ Mini-HACC performs the short-range gravity force calculations found in HACC. Lev
 
 
 ## Single-Node Server Requirements
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-|---- |---- |----------------- |------------ |------------------ | 
-| X86_64 CPU(s) |[AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s) <br>  AMD Instinct MI50 GPU(s)](https://rocm.docs.amd.com/en/docs-5.3.0/release/gpu_os_support.html#supported-distributions) | [Ubuntu <br> RHEL <br>  SLES  ](https://rocm.docs.amd.com/en/docs-5.3.0/release/gpu_os_support.html#supported-distributions) | [ROCm 5.3.0](https://rocm.docs.amd.com/en/docs-5.3.0/) | [Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) |
+[System Requirements](/README.md#single-node-server-requirements) 
 
 
 For ROCm installation procedures and validation checks, see:

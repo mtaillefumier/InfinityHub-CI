@@ -5,11 +5,10 @@ Instructions are provided to build rocHPL (HPL), using Spack (Lawrence Livermore
 ## Overview
 HPL, or High-Performance Linpack, is a benchmark which solves a uniformly random system of linear equations and reports floating-point execution rate. This documentation supports the implementation of the HPL benchmark on top of AMD's ROCm platform.
 
-## System Requirements
 ## Single-Node Server Requirements
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-|---- |---- |----------------- |------------ |------------------ | 
-| X86_64 CPU(s) |[AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s)](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html#supported-gpus) | [Ubuntu <br> RHEL <br>  SLES  <br> Oracel Linux](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html#supported-operating-systems) | [ROCm Latest](https://rocm.docs.amd.com/en/latest/) | [Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) |
+[System Requirements](/README.md#single-node-server-requirements) 
+
+
 ## Dependencies 
 The Dependencies for the build are:
 

@@ -5,7 +5,8 @@ Instructions on how to build a Docker Container with OpenMM.
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
+
 
 ## Inputs
 Possible `build-arg` for the Docker build command  

@@ -8,8 +8,10 @@ A user must have licenses and binaries to be able to use Ansys Fluent within the
 [Ansys Fluent](https://www.ansys.com/products/fluids/ansys-fluent/) is an advanced computational fluid dynamics (CFD) software used for simulating and analyzing fluid flow, heat transfer, and related phenomena in complex systems. It offers a range of powerful features for detailed and accurate modeling of various physical processes, including turbulence, chemical reactions, and multiphase flows. 
 
 
-## Single-Node Server Requirements
-[System Requirements](/README.md#single-node-server-requirements) 
+## Build System Requirements
+- Git
+- Docker
+
 
 ## Docker Container Build
 These instructions use Docker to create a container for Ansys Fluent.

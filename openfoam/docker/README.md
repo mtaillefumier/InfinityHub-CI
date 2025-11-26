@@ -3,7 +3,7 @@ Instructions on how to build a Docker Container with OpenFOAM using the PETSc so
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs
 Possible `build-arg` for the Docker build command  

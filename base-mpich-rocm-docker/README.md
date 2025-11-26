@@ -8,9 +8,6 @@ The container is the base upon which all other applications are built.
 > MITCH is API/ABI to compatible with CRAY MPICH, however there is no garantee that the version present on the system will be compatible with the version within the container.  
 > The current recipes presented in the [InfinityHub-CI](https://github.com/AMD/InfinityHub-CI/) repo have been written with OpenMPI, and may require some modification to build/run with MIPCH.  
 
-## Single-Node Server Requirements
-[System Requirements](/README.md#single-node-server-requirements) 
-
 ## Docker Container Build
 These instructions use Docker to create an HPC Application Container.  
 If you are not familiar with creating Docker builds, please see the available [Docker manuals and references](https://docs.docker.com/).
@@ -75,13 +72,14 @@ Possible `build-arg` for the Docker build command
 
 
 - ### AMDGPU_TARGETS
-    Default: `gfx908,gfx90a,gfx942`  
+    Default: `gfx908,gfx90a,gfx942,gfx950`  
     This variable is used to determine the GPU architecture. It is set as an environment variable that can used to pass into `--offload-arch` into your cmake compiler flags. 
     > |GPUs     | Architectures |
     > |---      |---            |
     > | MI100   | gfx908        |
     > | MI200   | gfx90a        |
-    > | MI300   | gfx942        |
+    > | MI300X/A</br>MI325   | gfx942        |
+    > | MI350   | gfx950        |
 
 ## Building Container
 Download the [Dockerfile](/base-gpu-mpi-rocm-docker/Dockerfile)  

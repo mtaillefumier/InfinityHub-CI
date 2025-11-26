@@ -3,7 +3,7 @@ This document provides instructions on how to build SPECFEM3D into a Docker cont
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs
 Possible `build-arg` for the Docker build command  

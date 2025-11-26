@@ -46,8 +46,8 @@ cd build
 ```bash
 cmake -DCMAKE_BUILD_TYPE=Release \
         -DGMX_BUILD_OWN_FFTW=ON \
-        -DCMAKE_C_COMPILER=gcc \
-        -DCMAKE_CXX_COMPILER=g++ \
+        -DCMAKE_C_COMPILER=${ROCM_PATH}/bin/amdclang \
+        -DCMAKE_CXX_COMPILER=${ROCM_PATH}/bin/amdclang++ \
         -DGMX_MPI=${OPEN_MPI_ENABLED} \
         -DGMX_GPU=HIP \
         -DREGRESSIONTEST_DOWNLOAD=OFF \

@@ -74,14 +74,14 @@ Possible `build-arg` for the Docker build command
     Example: `git vim nano` 
 
 - ### AMDGPU_TARGETS
-    Default: `gfx908,gfx90a,gfx942`  
+    Default: `gfx908,gfx90a,gfx942,gfx950`  
     This variable is used to determine the GPU architecture. It is set as an environment variable that can used to pass into `--offload-arch` into your cmake compiler flags. 
     > |GPUs     | Architectures |
     > |---      |---            |
     > | MI100   | gfx908        |
     > | MI200   | gfx90a        |
-    > | MI300   | gfx942        |
-
+    > | MI300X/A</br>MI325   | gfx942        |
+    > | MI350   | gfx950        |
 ## Building Container
 Download the [Dockerfile](/base-gpu-mpi-rocm-docker/Dockerfile)  
 

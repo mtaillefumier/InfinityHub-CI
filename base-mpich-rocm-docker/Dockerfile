@@ -6,7 +6,7 @@ ARG ROCM_URL="https://repo.radeon.com/amdgpu-install/7.0/ubuntu/noble/amdgpu-ins
 ARG MPICH_BRANCH="v4.3.1"
 ARG MPICH_DEVICE="ch4:ofi"
 ARG APT_GET_APPS=""
-ARG AMDGPU_TARGETS="gfx908,gfx90a,gfx942"
+ARG AMDGPU_TARGETS="gfx908,gfx90a,gfx942,gfx950"
 
 # Update and Install basic Linux development tools
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \

@@ -4,7 +4,7 @@ Instructions on how to build a Docker Container with AMD's implementation of GRO
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs
 Possible `build-arg` for the Docker build command  

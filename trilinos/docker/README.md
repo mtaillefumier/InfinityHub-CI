@@ -1,9 +1,8 @@
 # Trilinos Docker Build Instructions 
 This document provides instructions on how to build Trilinos into a Docker container that is portable between environments.
 
-## Build System Requirements
-- Git
-- Docker
+## Single-Node Server Requirements
+[System Requirements](/README.md#single-node-server-requirements) 
 
 ## Inputs
 Possible `build-arg` for the Docker build command  

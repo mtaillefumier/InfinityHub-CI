@@ -5,7 +5,7 @@ This document provides instructions on how to build RAJA into a Docker container
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs
 Possible `build-arg` for the Docker build command  

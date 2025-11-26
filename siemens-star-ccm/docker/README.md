@@ -7,8 +7,9 @@ A user must have licenses and binaries to be able to use Siemens Star CCM+ withi
 > Using a Containerized version of Star CCM+ is not officially supported by Siemens.
 
 
-## Single-Node Server Requirements
-[System Requirements](/README.md#single-node-server-requirements) 
+## Build System Requirements
+- Git
+- Docker  
 
 ## Docker Container Build
 These instructions use Docker to create a container for Siemens Star CCM+.
@@ -18,10 +19,6 @@ This example, is using a tarball with the name `STAR-CCM+19.04.009_01_linux-x86_
 Do not download the tarball with 'gnu' in the name; this legacy build does not support AMD GPUs.  
 
 If you are not familiar with creating Docker builds, please see the available [Docker manuals and references](https://docs.docker.com/).
-
-## Build System Requirements
-- Git
-- Docker
 
 ## Updating the Dockerfile
 
