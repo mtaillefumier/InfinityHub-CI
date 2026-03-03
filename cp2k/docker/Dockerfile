@@ -146,7 +146,7 @@ ENV PATH=$OMPI_PATH/bin:$UCX_PATH/bin:$UCC_PATH/bin:$PATH \
 # Install Additional Apps Below
 
 
-ARG CP2K_BRANCH="v2025.2"
+ARG CP2K_BRANCH="v2026.1"
 
 
 ENV LD_LIBRARY_PATH=$ROCM_PATH/lib/hipblas:$ROCM_PATH/lib/hipfft:$ROCM_PATH/lib/rocfft:$ROCM_PATH/lib/rocblas:$LD_LIBRARY_PATH \
@@ -176,7 +176,7 @@ COPY ./spack.sh ./spack.sh
 RUN ./spack.sh
 # the entire configuration is treated externally using spack environments
 
-ENV PATH=$PATH:/opt/cp2k/bin:/scripts \
+ENV PATH=$PATH:/opt/cp2k-install/bin:/scripts \
     OMPI_MCA_pml=ucx \
     OMPI_MCA_pml_ucx_tls=any \
     OMPI_MCA_osc=ucx \
@@ -184,6 +184,5 @@ ENV PATH=$PATH:/opt/cp2k/bin:/scripts \
     OMPI_MCA_pml_ucx_devices=any \
     UCX_TLS=self,sm,tcp,rocm
 
-WORKDIR /opt/cp2k/benchmarks
 # cp2k can be called with cp2k.psmp without without any spack knowledge 
 CMD ["/bin/bash"]

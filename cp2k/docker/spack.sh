@@ -6,5 +6,6 @@ spack env activate /opt/cp2k_environment
 spack external find --all
 spack concretize -f
 spack install -j16
-ln -s `spack find -p cp2k@master | tail -n 1 | awk -e 'BEGIN{FS=" "} {print $2}'` /opt/cp2k
+
+ln -s `spack find -p cp2k@master | tail -n 1 | awk 'BEGIN{FS=" "} {print $2}'` /opt/cp2k-install
 
