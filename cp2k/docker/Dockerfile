@@ -176,7 +176,7 @@ COPY ./spack.sh ./spack.sh
 RUN ./spack.sh
 # the entire configuration is treated externally using spack environments
 
-ENV PATH=$PATH:/opt/cp2k-install/bin:/scripts \
+ENV PATH=$PATH:/opt/cp2k/bin:/scripts \
     OMPI_MCA_pml=ucx \
     OMPI_MCA_pml_ucx_tls=any \
     OMPI_MCA_osc=ucx \

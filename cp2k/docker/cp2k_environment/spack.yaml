@@ -13,7 +13,7 @@ spack:
     - sirius@develop+rocm+fortran+vdwxc+dftd4+dftd3+pugixml+openmp+scalapack
     - libxc@7+fortran build_system=cmake
     - libint
-    - cosma+rocm
+    - cosma+rocm+gpu_direct+rccl
     - netlib-scalapack+pic+shared
     - spla+rocm+fortran
     - spfft+rocm
@@ -31,13 +31,14 @@ spack:
     - hipcc
     - trexio
     - gcc@12
-    - dbcsr+mpi+rocm+openmp+g2g
+    - dbcsr+mpi+rocm+openmp+g2g~tests
     - openblas
+    - libvdwxc@master
     - cp2k@2026.1+cosma~cuda+dbm_gpu+dftd4+grid_gpu+grpp+hdf5~ipo+libint+libxc+mpi+mpi_f08+openmp+pw_gpu+rocm+sirius+spglib+spla+tblite+trexio+vdwxc build_type=Release smm=libxsmm %gcc@12
   concretizer:
     unify: true
   packages:
     all:
-      variants: +shared amdgpu_target=gfx90a amdgpu_target_sram_ecc=gfx942
+      variants: +shared amdgpu_target=gfx942 amdgpu_target_sram_ecc=gfx942
       target: [zen3]
 
