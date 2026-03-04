@@ -31,15 +31,13 @@ spack:
     - hipcc
     - trexio
     - gcc@12
-    - dbcsr+mpi+rocm+openmp+g2g amdgpu_target=gfx90a
+    - dbcsr+mpi+rocm+openmp+g2g
     - openblas
-    - libvdwxc@0.5.0
-  #- greenx
-    - cp2k@master+cosma~cuda+dbm_gpu+dftd4+grid_gpu+grpp+hdf5~ipo+libint+libxc+mpi+mpi_f08+openmp+pw_gpu+rocm+sirius+spglib+spla+tblite+trexio+vdwxc build_type=Release smm=libxsmm %gcc@12
+    - cp2k@2026.1+cosma~cuda+dbm_gpu+dftd4+grid_gpu+grpp+hdf5~ipo+libint+libxc+mpi+mpi_f08+openmp+pw_gpu+rocm+sirius+spglib+spla+tblite+trexio+vdwxc build_type=Release smm=libxsmm %gcc@12
   concretizer:
     unify: true
   packages:
     all:
-      variants: +shared amdgpu_target=gfx90a amdgpu_target_sram_ecc=gfx90a
+      variants: +shared amdgpu_target=gfx90a amdgpu_target_sram_ecc=gfx942
       target: [zen3]
 
