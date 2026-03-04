@@ -31,7 +31,7 @@ spack:
     - hipcc
     - trexio
     - gcc@12
-    - dbcsr@develop+mpi+rocm+openmp+g2g amdgpu_target=gfx90a
+    - dbcsr+mpi+rocm+openmp+g2g amdgpu_target=gfx90a
     - openblas
     - libvdwxc@0.5.0
   #- greenx
