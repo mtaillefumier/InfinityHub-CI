@@ -7,5 +7,5 @@ spack external find --all
 spack concretize -f
 spack install -j16
 
-ln -s `spack find -p cp2k@master | tail -n 1 | awk 'BEGIN{FS=" "} {print $2}'` /opt/cp2k
+ln -s `spack find -p cp2k@2026.1 | tail -n 1 | awk 'BEGIN{FS=" "} {print $2}'` /opt/cp2k
 

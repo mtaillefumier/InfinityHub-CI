@@ -13,7 +13,7 @@ spack:
     - sirius@develop+rocm+fortran+vdwxc+dftd4+dftd3+pugixml+openmp+scalapack
     - libxc@7+fortran build_system=cmake
     - libint
-    - cosma+rocm+gpu_direct+rccl
+    - cosma+rocm
     - netlib-scalapack+pic+shared
     - spla+rocm+fortran
     - spfft+rocm
@@ -21,6 +21,7 @@ spack:
     - binutils
     - fftw+openmp
     - openmpi
+    - autoconf@2.72
     - libvori
     - spglib
     - dftd4
@@ -31,10 +32,10 @@ spack:
     - hipcc
     - trexio
     - gcc@12
-    - dbcsr+mpi+rocm+openmp+g2g~tests
+    - dbcsr@2.9.1+mpi+rocm+openmp~testsi~examples
     - openblas
     - libvdwxc@master
-    - cp2k@2026.1+cosma~cuda+dbm_gpu+dftd4+grid_gpu+grpp+hdf5~ipo+libint+libxc+mpi+mpi_f08+openmp+pw_gpu+rocm+sirius+spglib+spla+tblite+trexio+vdwxc build_type=Release smm=libxsmm %gcc@12
+    - cp2k@2026.1+cosma~cuda+dbm_gpu+dftd4+grid_gpu+grpp+hdf5~ipo+libint+libxc+mpi+mpi_f08+openmp+pw_gpu+rocm+sirius+spglib+spla+tblite+trexio+vdwxc build_type=Release smm=libxsmm 
   concretizer:
     unify: true
   packages:
