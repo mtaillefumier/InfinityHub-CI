@@ -127,7 +127,7 @@ class Cp2k(MakefilePackage, CMakePackage, CudaPackage, ROCmPackage):
         "openpmd-api",
         default=False,
         description="Enable openPMD support",
-        when="@2026.2: build_system=cmake",
+        when="@2026.1: build_system=cmake",
     )
     variant("quip", default=False, when="@:2025.2", description="Enable quip support")
     variant("dftd4", when="@2024.2:", default=False, description="Enable DFT-D4 support")

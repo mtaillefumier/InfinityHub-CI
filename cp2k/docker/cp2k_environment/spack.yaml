@@ -32,7 +32,7 @@ spack:
     - hipcc
     - trexio
     - gcc@12
-    - dbcsr@2.9.1+mpi+rocm+openmp~testsi~examples
+    - dbcsr@2.9.1+mpi+rocm+openmp~tests~examples
     - openblas
     - libvdwxc@master
     - cp2k@2026.1+cosma~cuda+dbm_gpu+dftd4+grid_gpu+grpp+hdf5~ipo+libint+libxc+mpi+mpi_f08+openmp+pw_gpu+rocm+sirius+spglib+spla+tblite+trexio+vdwxc build_type=Release smm=libxsmm 
