@@ -155,6 +155,7 @@ echo "=========================================="
 
 # Run solver stage with affinity scripts
 # Use UCX with shared memory and ROCm transports (disable InfiniBand)
+# Enable g2g (GPU-to-GPU) for DBCSR
 mpirun \
     -x UCX_TLS=sm,self,rocm \
     -x UCX_PROTO_ENABLE=n \
@@ -171,6 +172,7 @@ mpirun \
     -x NUM_CPUS=$SOLVER_CPUS \
     -x NUM_GPUS=$SOLVER_GPUS \
     -x OMP_NUM_THREADS=$SOLVER_THREADS \
+    -x DBCSR_USE_ACC_G2G=1 \
     --oversubscribe \
     -np $SOLVER_RANKS \
     --bind-to none \
