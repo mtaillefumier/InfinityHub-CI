@@ -5,7 +5,7 @@ If you are not familiar with creating Docker builds, please see the available [D
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs
 Possible `build-arg` for the Docker build command  
@@ -61,6 +61,7 @@ To run the container interactively, run the following command:
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it mycontainer/rochpl bash
 ```
 #### Docker Single Command
@@ -69,6 +70,7 @@ To run the container in a single command, as if in a batch script
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it mycontainer/rochpl \
            <rocHPL Command>
 ```

@@ -5,7 +5,7 @@ This Kokkos Container is a platform for building HPC applications using Kokkos a
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs
 Possible `build-arg` for the Docker build command  
@@ -63,6 +63,7 @@ docker run --rm -it \
     --device=/dev/kfd \
     --device=/dev/dri \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -v /path/to/my/project:/mnt \
     mycontainer/kokkos \
     /bin/bash

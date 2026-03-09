@@ -2,9 +2,9 @@
 Instructions on how to build a Docker Container with PIconGPU.
 
 
-## System Requirements
+## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs:
 Possible `build-arg` for the Docker build command    
@@ -69,6 +69,7 @@ docker run --rm -it \
     --device /dev/dri \
     --device /dev/kfd \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w /opt/picon-examples/khi_fom \
     mycontainer/picongpu  /bin/bash
 ```
@@ -80,6 +81,7 @@ docker run --rm -it \
     --device /dev/dri \
     --device /dev/kfd \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w  /opt/picon-examples/khi_fom \
     mycontainer/picongpu  \
     <PIconGPU Command> 

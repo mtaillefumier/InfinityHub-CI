@@ -7,7 +7,7 @@ ARG UCX_BRANCH="v1.19.0"
 ARG UCC_BRANCH="v1.5.1"
 ARG OMPI_BRANCH="v5.0.8"
 ARG APT_GET_APPS=""
-ARG AMDGPU_TARGETS="gfx908,gfx90a,gfx942"
+ARG AMDGPU_TARGETS="gfx908,gfx90a,gfx942,gfx950"
 
 # Update and Install basic Linux development tools
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \

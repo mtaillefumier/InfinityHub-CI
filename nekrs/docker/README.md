@@ -45,6 +45,7 @@ To run the [nekRS Benchmarks](/nekrs/README.md#running-nekRS-benchmark), just re
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it  mycontainer/nekRS  bin/bash
 ```
 
@@ -54,6 +55,7 @@ docker run --device=/dev/kfd \
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            mycontainer/nekRS  \
            <nekRS Command>
 ```

@@ -4,8 +4,9 @@
 This container recipe uses the "base-gpu-mpi-rocm-docker" as the base and adds Conda.
 The container can be used as a base for applications that require conda applications.
 
-## Single-Node Server Requirements
-[System Requirements](/README.md#single-node-server-requirements) 
+## Build System Requirements
+- Git
+- Docker
 
 ## Docker Container Build
 These instructions use Docker to create an HPC Application Container.  
@@ -62,6 +63,7 @@ To run the container interactively, run the following command:
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it conda_rocm_gpu:7.0 bash
 ```
 > ** Notes **

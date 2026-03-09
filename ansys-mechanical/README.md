@@ -4,9 +4,8 @@
 [Ansys Mechanical](https://www.ansys.com/products/structures/ansys-mechanical) is a powerful finite element analysis (FEA) tool used for simulating the behavior of structures and mechanical components under various conditions. It can be used to evaluate stress, strain, and deformation in materials. Provides analytic tools for heat transfer and thermal effects on structures. Simulates how structures respond to time-dependent loads, such as vibrations or impacts. Handle complex materials and large deformations that may not follow linear behavior. Improve design performance by simulating different scenarios and material choices.
 
 ## Single-Node Server Requirements
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | 
-|---- |---- |----------------- |------------ |
-| X86_64 CPU(s) |[ AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s)](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html#supported-gpus) | Ubuntu <br> RHEL <br>  SLES | [ROCm 5.x ](https://rocm.docs.amd.com/en/latest/release/versions.html) 
+[System Requirements](/README.md#single-node-server-requirements) 
+
 
 ## Licensing Information
 Your use of this application is subject to the terms of the applicable component-level license identified below. To the extent any subcomponent in this container requires an offer for corresponding source code, AMD hereby makes such an offer for corresponding source code form, which will be made available upon request. By accessing and using this application, you are agreeing to fully comply with the terms of this license. If you do not agree to the terms of this license, do not access or use this application.

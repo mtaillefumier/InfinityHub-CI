@@ -3,7 +3,7 @@ Instructions on how to build a Docker Container with OpenFOAM using the PETSc so
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs
 Possible `build-arg` for the Docker build command  
@@ -64,6 +64,7 @@ Launching Docker Container
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it  mycontainer/openfoam  bash
 ```
 #### Docker Single Command 
@@ -71,6 +72,7 @@ docker run --device=/dev/kfd \
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it  mycontainer/openfoam \
            <OpenFOAM Command> 
 ```

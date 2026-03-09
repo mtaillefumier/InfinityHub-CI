@@ -49,12 +49,12 @@ If you want to save files generated during the run, add `-v $(pwd):/host` before
 
 #### Docker Interactive
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined \
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host \
           mycontainer/grid /bin/bash
 ```
 ### Docker Non-Interactive
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined \
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host \
           mycontainer/grid <Grid Command>
 ```
 

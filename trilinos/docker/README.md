@@ -1,9 +1,8 @@
 # Trilinos Docker Build Instructions 
 This document provides instructions on how to build Trilinos into a Docker container that is portable between environments.
 
-## Build System Requirements
-- Git
-- Docker
+## Single-Node Server Requirements
+[System Requirements](/README.md#single-node-server-requirements) 
 
 ## Inputs
 Possible `build-arg` for the Docker build command  
@@ -81,11 +80,11 @@ If you want access to the HDF5 files generated during the run, please add `-v $(
 
 #### Docker Interactive
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined mycontainer/trilinos /bin/bash
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host mycontainer/trilinos /bin/bash
 ```
 #### Docker Single Command
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined mycontainer/trilinos <Trilinos Command>
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host mycontainer/trilinos <Trilinos Command>
 ```
 
 ### Singularity  

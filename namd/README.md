@@ -6,10 +6,8 @@
 NAMD is distributed free of charge. User(s) of the NAMD container(s) are reminded to register on the [NAMD download site](https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=NAMD) if they have not done so already.
  
 ## Single-Node Server Requirements
+[System Requirements](/README.md#single-node-server-requirements) 
 
-| CPUs | GPUs | Operating Systems | ROCm™ Driver | Container Runtimes | 
-| ---- | ---- | ----------------- | ------------ | ------------------ | 
-| X86_64 CPU(s) | AMD Instinct MI200 GPU(s) <br>  AMD Instinct MI100 GPU(s)| Ubuntu 18.04 <br> Cento 8.3 | ROCm v4.5 compatibility |[Docker Engine](https://docs.docker.com/engine/install/) <br> [Singularity](https://sylabs.io/docs/) | 
 
 For ROCm installation procedures and validation checks, see:
 * [ROCm Documentation](https://rocm.docs.amd.com)
@@ -31,7 +29,7 @@ In order to assess performance of the container image, NAMD standard benchmark s
 
 Begin by launching a container interactively:
 ```
-docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined  amdih/namd:2.15a2-20211101 /bin/bash
+docker run --rm -it --device=/dev/kfd --device=/dev/dri --security-opt seccomp=unconfined --ipc=host amdih/namd:2.15a2-20211101 /bin/bash
 ```
 
 Then in the container navigate into the `/examples` directory and run the benchmarks:

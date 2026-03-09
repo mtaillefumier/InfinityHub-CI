@@ -4,7 +4,7 @@ This document provides instructions on how to build MILC into a Docker container
 
 ## Build System Requirements
 - Git
-- Docker
+- Docker  
 
 ## Inputs
 Possible `build-arg` for the Docker build command  
@@ -69,6 +69,7 @@ docker run --rm -it \
     --device=/dev/kfd \
     --device=/dev/dri \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w /benchmark/ \
     mycontainer/milc /bin/bash
 ```
@@ -78,6 +79,7 @@ docker run --rm -it \
     --device=/dev/kfd \
     --device=/dev/dri \
     --security-opt seccomp=unconfined \
+    --ipc=host \
     -w /benchmark/benchmarks/tiny/generation/ \
     -v $(pwd):/benchmark/benchmarks/tiny/generation/lattices  
     mycontainer/milc <MILC Command>

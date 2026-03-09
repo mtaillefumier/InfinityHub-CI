@@ -54,6 +54,7 @@ To run the [QMCPACK Benchmarks](/qmcpack/README.md#running-qmcpack-benchmark), j
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it mycontainer/qmcpack  bash
 ```
 
@@ -63,6 +64,7 @@ docker run --device=/dev/kfd \
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            mycontainer/qmcpack  \
            <QMCPACK Command>
 ```

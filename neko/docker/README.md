@@ -57,6 +57,7 @@ To run the [NEKO Benchmarks](/neko/README.md#running-neko-benchmark), just repla
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            -it  mycontainer/neko  bin/bash
 ```
 
@@ -66,6 +67,7 @@ docker run --device=/dev/kfd \
 docker run --device=/dev/kfd \
            --device=/dev/dri \
            --security-opt seccomp=unconfined \
+           --ipc=host \
            mycontainer/neko  \
            <NEKO Command>
 ```

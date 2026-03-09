@@ -12,8 +12,6 @@ RUN git clone -b ${GROMACS_BRANCH} https://gitlab.com/gromacs/gromacs.git \
   && cd build   \
   && cmake -DCMAKE_BUILD_TYPE=Release \
         -DGMX_BUILD_OWN_FFTW=ON \
-        -DCMAKE_C_COMPILER=gcc \
-        -DCMAKE_CXX_COMPILER=g++ \
         -DGMX_MPI=${MPI_ENABLED} \
         -DGMX_HIP_TARGET_ARCH=${AMDGPU_TARGETS} \
         -DGMX_GPU=HIP \
